@@ -230,7 +230,7 @@ def parse_multipart_form_data(boundary, data, arguments, files):
         headers = HTTPHeaders.parse(part[:eoh].decode("utf-8"))
         disp_header = headers.get("Content-Disposition", "")
         disposition, disp_params = _parse_header(disp_header)
-        if disposition != "form-data" or not part.endswith(b("\r\n")):
+        if disposition != "form-data":
             logging.warning("Invalid multipart/form-data")
             continue
         value = part[eoh + 4:-2]
